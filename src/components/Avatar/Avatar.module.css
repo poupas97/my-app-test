@@ -1,0 +1,25 @@
+.avatar,
+.placeholder {
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.placeholder {
+  --gray-rgb: 0, 0, 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--gray-rgb), 0.05);
+  border: 1px solid rgba(var(--gray-rgb), 0.08);
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .placeholder {
+    --gray-rgb: 255, 255, 255;
+    background: rgba(var(--gray-rgb), 0.06);
+    border-color: rgba(var(--gray-rgb), 0.145);
+  }
+}
