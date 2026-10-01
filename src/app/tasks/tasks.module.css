@@ -1,0 +1,240 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+  --error: #c62828;
+  --success: #2e7d32;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  font-family: var(--font-geist-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+    --error: #ef9a9a;
+    --success: #a5d6a7;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.summary {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.form,
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.inputRow {
+  display: flex;
+  gap: 12px;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--gray-alpha-200);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.input:focus-visible,
+.submit:focus-visible,
+.check:focus-visible,
+.delete:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+
+.submit {
+  height: 44px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 128px;
+  background: var(--foreground);
+  color: var(--background);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.submit:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.error,
+.success {
+  min-height: 18px;
+  font-size: 13px;
+}
+
+.error {
+  color: var(--error);
+}
+
+.success {
+  color: var(--success);
+}
+
+.empty {
+  padding: 32px 16px;
+  border: 1px dashed var(--gray-alpha-200);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  border: 1px solid var(--gray-alpha-200);
+  border-radius: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px 12px;
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid var(--gray-alpha-200);
+}
+
+.itemTitle {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+}
+
+.item[data-done="true"] .itemTitle {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Round check button; the tick is drawn with a rotated two-sided border. */
+.check {
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--gray-alpha-200);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.check[aria-pressed="true"] {
+  border-color: var(--foreground);
+  background: var(--foreground);
+}
+
+.check[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 6px;
+  height: 11px;
+  border: solid var(--background);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.delete {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 128px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .submit:not(:disabled):hover {
+    opacity: 0.85;
+  }
+
+  .check:hover {
+    border-color: var(--foreground);
+  }
+
+  .delete:hover {
+    background: var(--gray-alpha-100);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 32px 16px;
+  }
+
+  .inputRow {
+    flex-direction: column;
+  }
+
+  .submit {
+    align-self: stretch;
+  }
+}

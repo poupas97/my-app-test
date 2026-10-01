@@ -33,6 +33,7 @@ describe("Navbar", () => {
       ["Home", "/"],
       ["F1", "/f1"],
       ["F2", "/f2"],
+      ["Tasks", "/tasks"],
       ["Profile", "/profile"],
     ]);
   });
@@ -42,6 +43,7 @@ describe("Navbar", () => {
     ["/f1", "F1"],
     ["/f1/f11", "F1"],
     ["/f2", "F2"],
+    ["/tasks", "Tasks"],
     ["/profile", "Profile"],
   ])("marks only the current route as active on %s", (pathname, label) => {
     renderAt(pathname);
